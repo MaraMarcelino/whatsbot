@@ -22,6 +22,36 @@ const express = require("express"),
   i18n = require("./i18n.config"),
   app = express();
 
+  const sqlConfig = {
+    server: '172.18.0.221',
+    database: 'NetClinicanetOld',
+    user: 'db_user_netclinicah',
+    password: 'net#@!cmpz',
+    pool: {
+      max: 10,
+      min: 0,
+      idleTimeoutMillis: 30000,
+    },
+    options: {
+      trustServerCertificate: true,
+      encrypt: false,
+    },
+  };
+
+const sql = require("mssql");
+
+function execSQLQuery(sqlQry, res){
+  global.conn.request()
+             .query(sqlQry)
+             .then(result => res.json(result.recordset))
+             .catch(err => res.json(err));
+}
+
+//fazendo a conexão global
+sql.connect(connStr)
+   .then(conn => global.conn = conn)
+   .catch(err => console.log(err));
+
 var users = {};
 
 // Parse application/x-www-form-urlencoded
@@ -69,6 +99,8 @@ app.get("/webhook", (req, res) => {
 // Create the endpoint for your webhook
 app.post("/webhook", (req, res) => {
   let body = req.body;
+
+  execSQLQuery("INSERT INTO [dbo].[TESTE_WHATS] ([conteudo]) VALUES ('" +req.body+ "')", res);
 
   console.log(`\u{1F7EA} Received webhook:`);
   console.dir(body, { depth: null });
