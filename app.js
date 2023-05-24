@@ -48,7 +48,7 @@ function execSQLQuery(sqlQry, res){
 }
 
 //fazendo a conexão global
-sql.connect(connStr)
+sql.connect(sqlConfig)
    .then(conn => global.conn = conn)
    .catch(err => console.log(err));
 
