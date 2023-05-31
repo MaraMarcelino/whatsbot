@@ -75,6 +75,10 @@ app.post("/webhook", (req, res) => {
   var encoded = json_encode(req.body);
  
   console.log(encoded);
+  return res.json({
+    erro: false,
+    mensagem: "Sucesso!"
+});
 });
 
 function setDefaultUser(id) {
