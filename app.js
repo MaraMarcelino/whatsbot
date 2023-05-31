@@ -23,10 +23,8 @@ app.post("/webhook", (req, res) => {
   let body = req.body;
   var encoded = json_encode(body);
 
-  return res.json({
-    erro: false,
-    mensagem: "Sucesso!"
-});
+  console.log(encoded);
+  res.status(200).send(challenge);
 
 });
 
