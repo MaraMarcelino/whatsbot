@@ -17,10 +17,11 @@ router.get("/webhook", async (req, res) => {
 });
 
 router.post("/webhook", async (req, res) => {
-    var dados = json_encode(req.body);
+    var dados = req.body;
 
-    console.log(dados);
-   /* historico_retorno_whats.execSQLQuery(dados).then(result => {
+    console.log(dados.entry[0].changes[0].value.statuses);
+    //console.log(json_encode(req.body));
+   /* historico_retorno_whats.execSQLQuery(dados.entry[0].changes[0].value.statuses).then(result => {
     
 })*/
 

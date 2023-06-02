@@ -7,7 +7,7 @@ const sql = require(process.env.DB_DIALECT);
 async function execSQLQuery(dados){
     try{
         let pool = await sql.connect(config);
-        await pool.request().query("INSERT INTO [dbo].[HISTORICO_RETORNO_WHATS] ([teste]) VALUES ('"+dados+"')");
+        await pool.request().query("SELECT * FROM HISTORICO_ENVIO_WHATS WHERE ");
     }
     catch(error){
         console.log(error);
