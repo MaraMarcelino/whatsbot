@@ -19,8 +19,16 @@ router.get("/webhook", async (req, res) => {
 router.post("/webhook", async (req, res) => {
     var dados = req.body;
 
-    console.log(dados.entry[0].changes[0].value.statuses);
-    //console.log(json_encode(req.body));
+    if(dados.entry){
+        console.log(dados.entry[0].changes[0].value.statuses);
+
+    }
+    else if(dados.status){ 
+        //historico_retorno_whats.execSQLQueryAtualizaStatus(dados.status, dados.recipient_id);
+        console.log(dados);
+    }
+
+    console.log(json_encode(req.body));
    /* historico_retorno_whats.execSQLQuery(dados.entry[0].changes[0].value.statuses).then(result => {
     
 })*/
